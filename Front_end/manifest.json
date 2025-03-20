@@ -1,0 +1,16 @@
+{
+    "short_name": "MiApp",
+    "name": "Mi Aplicación en React",
+    "icons": [
+        {
+            "src": "/vite.svg",
+            "type": "image/svg+xml",
+            "sizes": "any"
+          }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+  }
+  

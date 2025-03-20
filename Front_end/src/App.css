@@ -1,0 +1,149 @@
+/* 🎬 Estilos Generales */
+:root {
+  --primary-color: #ff9800;
+  --hover-color: #ff6d00;
+  --background-color: #121212;
+  --text-color: rgba(255, 255, 255, 0.9);
+  --modal-bg: #1e1e1e;
+  --shadow-color: rgba(255, 165, 0, 0.5);
+
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🎬 Contenedor de películas */
+.movies-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 40px 20px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 20px; /* ✅ Mejora el scroll */
+}
+
+/* 🎭 Tarjeta de película */
+.movie-card {
+  width: clamp(200px, 22vw, 250px); /* ✅ Se adapta mejor a distintos tamaños de pantalla */
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  scroll-snap-align: start;
+}
+
+.movie-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+/* 🎥 Imagen */
+.movie-card img {
+  width: 100%;
+  height: clamp(280px, 30vh, 350px); /* ✅ Ajusta la altura dinámicamente */
+  object-fit: cover;
+}
+
+/* 📌 Modal */
+.movie-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--modal-bg);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: none;
+  text-align: center;
+}
+
+.movie-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 🎭 Botón de cerrar */
+.close-btn {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  transition: background 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+  background: var(--hover-color);
+}
+
+/* 🎬 Menú de navegación */
+nav {
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: yellow;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+/* 📱 Responsividad */
+@media (max-width: 768px) {
+  .movies-container {
+    padding: 20px 10px;
+    gap: 10px;
+  }
+
+  .movie-card {
+    width: 180px;
+  }
+
+  .movie-card img {
+    height: 250px;
+  }
+
+  .movie-dialog {
+    width: 80%;
+  }
+
+  nav ul {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
