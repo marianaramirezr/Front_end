@@ -33,7 +33,6 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* 🎥 Modal de detalles de la película */
 .movie-dialog {
   position: fixed;
   top: 50%;

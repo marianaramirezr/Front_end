@@ -4,7 +4,7 @@ const useDirectoresStore = create((set) => ({
   directores: [],
   fetchDirectores: async () => {
     try {
-      const response = await fetch("http://localhost:4000/directores"); // Asegúrate de que la URL es correcta
+      const response = await fetch("http://localhost:4000/directores"); 
       const data = await response.json();
       set({ directores: data });
     } catch (error) {

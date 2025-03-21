@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useMediaStore from "../store/useMediaStore"; 
+import { useMediaStore } from "../store/useMediaStore";
 
 const MediaManager = () => {
   const { media, fetchMedia, addMedia, updateMedia, deleteMedia } = useMediaStore();

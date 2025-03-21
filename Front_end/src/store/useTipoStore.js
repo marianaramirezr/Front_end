@@ -6,7 +6,7 @@ const useTipoStore = create((set) => ({
   error: null,
 
   cargarTipos: async () => {
-    set({ loading: true, error: null }); // ⏳ Iniciar carga
+    set({ loading: true, error: null }); 
 
     try {
       const response = await fetch("http://localhost:4000/tipos");

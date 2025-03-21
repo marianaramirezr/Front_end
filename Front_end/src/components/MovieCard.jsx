@@ -1,40 +1,67 @@
 import { useEffect, useState } from "react";
 import "../App.css";
-import { obtenerInformacionMedia } from "../pages/ManageMovies"; 
 
 const MovieCard = ({ movie }) => {
   const [infoPelicula, setInfoPelicula] = useState({
     director: "Cargando...",
     año: "No disponible",
+    genero: "Cargando...",
     sinopsis: "No disponible",
   });
 
+  const obtenerInformacionDirector = async (idDirector) => {
+    try {
+      const response = await fetch(`http://localhost:4000/directores/${idDirector}`);
+      const data = await response.json();
+      return data.nombre; 
+    } catch (error) {
+      console.error("Error obteniendo el director:", error);
+      return "Desconocido";
+    }
+  };
+
+  const obtenerInformacionGenero = async (idGenero) => {
+    try {
+      const response = await fetch(`http://localhost:4000/generos/${idGenero}`);
+      const data = await response.json();
+      return data.nombre; 
+    } catch (error) {
+      console.error("Error obteniendo el género:", error);
+      return "Desconocido";
+    }
+  };
+
   useEffect(() => {
-    if (!movie.director_id) {
-      console.error("❌ Error: movie.director_id es inválido", movie);
+    if (!movie.director_id || !movie.genero_id) {
+      console.error("❌ Error: ID inválido en movie", movie);
       return;
     }
 
-    console.log("🔍 Solicitando info del director con ID:", movie.director_id); 
+    console.log("🔍 Solicitando info del director y género...");
 
     const abortController = new AbortController();
 
     const fetchMovieData = async () => {
       try {
-        const data = await obtenerInformacionMedia(movie.director_id, abortController.signal);
+        const [directorData, generoData] = await Promise.all([
+          obtenerInformacionDirector(movie.director_id),
+          obtenerInformacionGenero(movie.genero_id),
+        ]);
 
         setInfoPelicula({
-          director: data.nombre || "Desconocido",
-          año: movie.año || "No disponible", 
+          director: directorData || "Desconocido",
+          año: movie.año || "No disponible",
+          genero: generoData || "Desconocido",
           sinopsis: movie.sinopsis || "No disponible",
         });
 
       } catch (error) {
-        console.error("❌ Error obteniendo la información del director:", error);
+        console.error("❌ Error obteniendo la información:", error);
 
         setInfoPelicula({
           director: "Desconocido",
           año: movie.año || "No disponible",
+          genero: "Desconocido",
           sinopsis: movie.sinopsis || "No disponible",
         });
       }
@@ -43,7 +70,7 @@ const MovieCard = ({ movie }) => {
     fetchMovieData();
 
     return () => abortController.abort();
-  }, [movie.director_id]); 
+  }, [movie.director_id, movie.genero_id]);
 
   return (
     <div className="movie-card">
@@ -52,7 +79,7 @@ const MovieCard = ({ movie }) => {
         <h3>{movie.titulo}</h3>
         <p><strong>Año:</strong> {infoPelicula.año}</p>
         <p><strong>Director:</strong> {infoPelicula.director}</p>
-        <p><strong>Sinopsis:</strong> {infoPelicula.sinopsis}</p>
+        <p><strong>Género:</strong> {infoPelicula.genero}</p>
       </div>
     </div>
   );

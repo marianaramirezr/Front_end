@@ -1,32 +1,27 @@
 import { useEffect } from "react";
-import useMoviesStore from "../store/moviesStore";
-import MovieCard from "../components/MovieCard";
+import useMediaStore from "../store/useMediaStore";
 
 const Media = () => {
-  const { movies, fetchMovies, cargando, error } = useMoviesStore();
+  const { media, loading, error, fetchMedia } = useMediaStore();
 
   useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+    fetchMedia();
+  }, []);
 
-  console.log("🎬 Películas obtenidas:", movies); 
+  if (loading) return <p>⏳ Cargando películas...</p>;
+  if (error) return <p>❌ Error: {error}</p>;
+  if (!media || !Array.isArray(media) || media.length === 0) {
+    return <p>📭 No hay películas disponibles.</p>;
+  }
 
   return (
-    <div className="media-container">
-      <h1>Catálogo de Películas</h1>
-
-      {cargando && <p>Cargando películas...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <div className="movie-grid">
-        {movies.length > 0 ? (
-          movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))
-        ) : (
-          !cargando && <p>No hay películas disponibles.</p>
-        )}
-      </div>
+    <div>
+      <h2>🎬 Lista de Películas</h2>
+      <ul>
+        {media.map((movie) => (
+          <li key={movie.id}>{movie.titulo}</li>
+        ))}
+      </ul>
     </div>
   );
 };

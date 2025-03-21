@@ -4,7 +4,7 @@ const useGeneroStore = create((set) => ({
   generos: [],
   fetchGeneros: async () => {
     try {
-      const response = await fetch("http://localhost:4000/generos"); // Asegúrate de que la URL es correcta
+      const response = await fetch("http://localhost:4000/generos"); 
       const data = await response.json();
       set({ generos: data });
     } catch (error) {
@@ -13,4 +13,4 @@ const useGeneroStore = create((set) => ({
   },
 }));
 
-export default useGeneroStore; // ✅ Exportación por defecto
+export default useGeneroStore; 
