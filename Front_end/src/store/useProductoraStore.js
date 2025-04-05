@@ -9,7 +9,7 @@ const useProductoraStore = create((set) => ({
     set({ loading: true, error: null }); 
 
     try {
-      const response = await fetch("http://localhost:4000/productoras");
+      const response = await fetch("https://api-rest-efe4.onrender.com/productoras");
 
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);

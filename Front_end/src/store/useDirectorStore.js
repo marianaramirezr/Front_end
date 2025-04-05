@@ -4,7 +4,7 @@ const useDirectoresStore = create((set) => ({
   directores: [],
   fetchDirectores: async () => {
     try {
-      const response = await fetch("http://localhost:4000/directores"); 
+      const response = await fetch("https://api-rest-efe4.onrender.com/directores"); 
       const data = await response.json();
       set({ directores: data });
     } catch (error) {

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/media";
+const API_URL = "https://api-rest-efe4.onrender.com/media";
 
 const useMediaStore = create((set) => ({
   media: [],

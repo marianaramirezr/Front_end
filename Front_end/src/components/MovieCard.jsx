@@ -11,7 +11,7 @@ const MovieCard = ({ movie }) => {
 
   const obtenerInformacionDirector = async (idDirector) => {
     try {
-      const response = await fetch(`http://localhost:4000/directores/${idDirector}`);
+      const response = await fetch(`https://api-rest-efe4.onrender.com/directores${idDirector}`);
       const data = await response.json();
       return data.nombre; 
     } catch (error) {
@@ -22,7 +22,7 @@ const MovieCard = ({ movie }) => {
 
   const obtenerInformacionGenero = async (idGenero) => {
     try {
-      const response = await fetch(`http://localhost:4000/generos/${idGenero}`);
+      const response = await fetch(`https://api-rest-efe4.onrender.com/generos${idGenero}`);
       const data = await response.json();
       return data.nombre; 
     } catch (error) {

@@ -24,7 +24,7 @@ const ManageMovies = () => {
 
   const obtenerInformacionMedia = async (id, signal) => {
     try {
-      const res = await axios.get(`http://localhost:4000/directores/${id}`, { signal });
+      const res = await axios.get(`https://api-rest-efe4.onrender.com/directores${id}`, { signal });
       return res.data;
     } catch (error) {
       console.error("❌ Error obteniendo información del director:", error);

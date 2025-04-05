@@ -9,7 +9,7 @@ const useTipoStore = create((set) => ({
     set({ loading: true, error: null }); 
 
     try {
-      const response = await fetch("http://localhost:4000/tipos");
+      const response = await fetch("https://api-rest-efe4.onrender.com/tipos");
       if (!response.ok) throw new Error("Error al obtener los tipos");
       
       const data = await response.json();

@@ -28,7 +28,7 @@ export default function Movies() {
       try {
         if (selectedMovie.director_id) {
           const resDirector = await axios.get(
-            `http://localhost:4000/directores/${selectedMovie.director_id}`,
+            `https://api-rest-efe4.onrender.com/directores${selectedMovie.director_id}`,
             { signal }
           );
           setDirector(resDirector.data.nombre || "Desconocido");
@@ -38,7 +38,7 @@ export default function Movies() {
   
         if (selectedMovie.genero_id) {
           const resGenero = await axios.get(
-            `http://localhost:4000/generos/${selectedMovie.genero_id}`,
+            `https://api-rest-efe4.onrender.com/generos/${selectedMovie.genero_id}`,
             { signal }
           );
           setGenero(resGenero.data.nombre || "Desconocido");
@@ -48,7 +48,7 @@ export default function Movies() {
 
         if (selectedMovie.productora_id) {
           const resProductora = await axios.get(
-            `http://localhost:4000/productoras/${selectedMovie.productora_id}`,
+            `https://api-rest-efe4.onrender.com/productoras/${selectedMovie.productora_id}`,
             { signal }
           );
           setProductora(resProductora.data.nombre || "Desconocido");

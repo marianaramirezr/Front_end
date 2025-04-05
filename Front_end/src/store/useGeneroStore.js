@@ -4,7 +4,7 @@ const useGeneroStore = create((set) => ({
   generos: [],
   fetchGeneros: async () => {
     try {
-      const response = await fetch("http://localhost:4000/generos"); 
+      const response = await fetch("https://api-rest-efe4.onrender.com/generos"); 
       const data = await response.json();
       set({ generos: data });
     } catch (error) {
